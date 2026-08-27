@@ -1,4 +1,4 @@
-# TODO(v6): rename to `create`, the fleet-wide name for the module-wide toggle. Breaking:
+# TODO: rename to `create`, the fleet-wide name for the module-wide toggle. Breaking:
 # renaming a variable forces every caller to change and has no `moved` equivalent.
 variable "create_bucket" {
   description = "Controls if S3 bucket should be created"
@@ -112,7 +112,7 @@ variable "logging" {
 # ACL
 ################################################################################
 
-# TODO(v6): consider removing. AWS recommends disabling ACLs entirely, and Object Ownership
+# TODO: consider removing. AWS recommends disabling ACLs entirely, and Object Ownership
 # defaults to `BucketOwnerEnforced` where `acl` and `grant` are rejected outright. Retained
 # because callers on legacy CloudFront standard logging still require them.
 # https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html
@@ -168,7 +168,7 @@ variable "website" {
 # Versioning
 ################################################################################
 
-# TODO(v6): type this as an object. `map(string)` coerces `enabled = true` to `"true"`, which
+# TODO: type this as an object. `map(string)` coerces `enabled = true` to `"true"`, which
 # main.tf then has to convert back through a four-deep `try()` chain. Breaking: the accepted
 # input shape changes.
 variable "versioning" {
@@ -447,7 +447,7 @@ variable "policy" {
   default     = null
 }
 
-# TODO(v6): the name and description both describe a bucket policy, but this gates the
+# TODO: the name and description both describe a bucket policy, but this gates the
 # `aws_s3_bucket_public_access_block` resource. Renaming it to `create_public_access_block`
 # is an API change, so it waits for the next major
 variable "attach_public_policy" {
@@ -633,7 +633,7 @@ variable "intelligent_tiering" {
 
 variable "metric_configuration" {
   description = "Metric configurations for the bucket"
-  # TODO(v6): change to `map(object(...))` keyed by the caller. `aws_s3_bucket_metric` requires
+  # TODO: change to `map(object(...))` keyed by the caller. `aws_s3_bucket_metric` requires
   # `[bucket, name]`, so many exist per bucket and house style keys them by name. Breaking:
   # `for_each` keys a list by position, so re-keying re-addresses and recreates every existing
   # configuration. Measured: 12 public callers pass a list, none passes a map.

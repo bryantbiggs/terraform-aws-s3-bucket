@@ -1,5 +1,5 @@
 ################################################################################
-# TODO(v6): drop the `s3_bucket_` prefix from every output in this file. This module has a
+# TODO: drop the `s3_bucket_` prefix from every output in this file. This module has a
 # single subject, and house style is bare names (`arn`, `id`, `region`). Breaking: renaming an
 # output forces every caller to change. See terraform-aws-security-group/outputs.tf.
 ################################################################################
@@ -76,7 +76,7 @@ output "s3_bucket_website_domain" {
 # Versioning
 ################################################################################
 
-# TODO(v6): rename to `versioning_status`. Breaking: an output rename forces callers to change.
+# TODO: rename to `versioning_status`. Breaking: an output rename forces callers to change.
 output "aws_s3_bucket_versioning_status" {
   description = "The versioning status of the bucket. Will be 'Enabled', 'Suspended', or 'Disabled'"
   value       = try(aws_s3_bucket_versioning.this[0].versioning_configuration[0].status, null)
